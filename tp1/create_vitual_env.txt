@@ -1,0 +1,20 @@
+# Instalar virtualenv (opcional)
+pip install virtualenv
+
+# Crear un entorno virtual usando virtualenv
+virtualenv mi_entorno
+
+# O crear un entorno virtual usando venv
+python -m venv mi_entorno
+
+# Activar el entorno virtual (Windows)
+mi_entorno\Scripts\activate
+
+# Activar el entorno virtual (macOS y Linux)
+source mi_entorno/bin/activate
+
+# Instalar paquetes necesarios
+pip install nombre_del_paquete
+
+# Desactivar el entorno virtual
+deactivate
