@@ -208,7 +208,7 @@ class Calculator:
 
     def operate(self):
         try:
-            if self.operator in ['+','-','/','dot']:
+            if self.operator in ['+','-','/']:
                 if not(self.n_col == self.n_col1 and
                     self.n_rows == self.n_rows1):
                     raise Exception('Wrong matrix dimension')
@@ -278,13 +278,21 @@ class Calculator:
                 if  self.operator_iter:
                     self.result = self.input1_num        
                     for i in range(self.iterations-1):
-                        self.result = self.result * self.input1_num        
+                        self.result = (self.result*self.input1_num)        
                 else:
-                    self.result = self.input1_num*self.input2_num
+                    if (sum(size_input1)+sum(size_input2)==4):
+                        self.result = (self.input1_num*self.input2_num)
+                    else:   
+                        self.result = np.matmul(self.input1_num,self.input2_num)
+
             elif (self.operator== '/'):
                 self.result = self.input1_num/self.input2_num
             elif (self.operator== 'dot'):
-                self.result = self.input1_num*self.input2_num
+                if 1 in np.shape(self.input1_num) and 1 in np.shape(self.input2_num):
+                    self.result = [np.dot(self.input1_num.ravel(),
+                                                  self.input2_num.ravel())]
+                else:
+                    self.result = np.dot(self.input1_num,self.input2_num)
 
         except Exception as e:
             sg.popup_error(e)
