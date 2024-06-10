@@ -11,10 +11,10 @@ class Calculator:
     n_col1     = int
     n_col      = int
     values     = []
-    opereator  = str
+    operator  = str
     operator_iter = False
     iterations = int
-    window     = sg.Window('Calculator')
+    window     = None
 
     def __init__(self):
         layout = [
@@ -54,6 +54,9 @@ class Calculator:
     def run(self):
         while True:
             self.event, self.values = self.window.read()
+
+            if self.event == sg.WIN_CLOSED or self.event == 'Cancel':  # if user closes window or clicks cancel
+                break
 
             self.window['scalar'].update(disabled=self.values['vector_matrix'])
             self.window['vector_matrix'].update(disabled=self.values['scalar'])
@@ -112,9 +115,6 @@ class Calculator:
 
             if (self.operator_iter):
                 self.iterations = self.values['iter_num']
-
-            if self.event == sg.WIN_CLOSED or self.event == 'Cancel':  # if user closes window or clicks cancel
-                break
 
         self.window.close()
 
@@ -324,7 +324,6 @@ class Calculator:
         self.window['output'].update(result)
 
 
-# Ejemplo de uso
 if __name__ == "__main__":
     calculator = Calculator()
     calculator.run()
