@@ -2,8 +2,6 @@ from pydantic import BaseModel, Field, conint, field_validator
 from typing import Annotated, List
 import serial
 import sys
-sys.path.append('../tp1/')
-sys.path.append('../tp2/')
 from Calculator import Calculator
 from ejemplo import graph_example
 
